@@ -160,12 +160,12 @@ paths:
         401:
           $ref: '#/components/responses/UnauthorizedError'
   /addjoblink:
-   post:
+    post:
       tags:
       - job
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
+      summary: Post a link
+      description: An authenticated user be able to post a link
+      operationId: addjoblink
       requestBody:
         description: Job url
         content:
@@ -178,10 +178,32 @@ paths:
         required: true
       responses:
         200:
-          description: successful operation
+          description: Job link added successfully.
         401:
           $ref: '#/components/responses/UnauthorizedError'
-  
+  /joblinks:
+    get:
+      tags:
+      - job
+      summary: Get Job lists
+      description: An authenticated user be able to retriev joblinks
+      operationId: addjoblink
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        200:
+          description: Job link added successfully.
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
 components:
   schemas:
     User:
