@@ -160,7 +160,7 @@ paths:
     get:
       tags:
       - user
-      summary: Get user information
+      summary: Confirm user's email address
       operationId: getUserByName
       responses:
         200:
