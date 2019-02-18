@@ -87,6 +87,7 @@ paths:
       tags:
       - user
       summary: Create user
+      description: User be able to sign up with username, password, email. After sign up backend will send token to email.
       operationId: createUser
       requestBody:
         description: Created user object
@@ -98,12 +99,8 @@ paths:
       responses:
         200:
           description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
         default:
-          description: This eamil is using by someone else
+          description: The eamil is using by someone else or password.
       security: []
   /user/login:
     post:
