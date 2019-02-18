@@ -44,8 +44,8 @@ paths:
     put:
       tags:
       - user
-      summary: Update user data
-      description: An authenticated user be able to update information
+      summary: Update user profile
+      description: An authenticated user be able to update information.
       operationId: updateuser
       requestBody:
         description: Updated user object
@@ -59,10 +59,10 @@ paths:
               password: test
         required: true
       responses:
-        400:
-          description: Invalid user supplied
-        404:
-          description: User not found
+        200:
+          description: User data successfully updated.
+        default:
+          description: Access token is missing or invalid
     delete:
       tags:
       - user
