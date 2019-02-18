@@ -191,6 +191,10 @@ paths:
         explode: true
         schema:
           type: string
+          example: all
+          enum:
+          - all
+          - mine
       responses:
         200:
           description: Job links
