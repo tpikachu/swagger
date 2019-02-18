@@ -185,7 +185,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Loginrequest'
+              $ref: '#/components/schemas/body_1'
         required: true
       responses:
         200:
@@ -250,6 +250,11 @@ components:
         username:
           type: string
         password:
+          type: string
+    body_1:
+      type: object
+      properties:
+        url:
           type: string
   responses:
     UnauthorizedError:
