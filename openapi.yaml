@@ -159,6 +159,26 @@ paths:
           description: User successfully log out.
         401:
           $ref: '#/components/responses/UnauthorizedError'
+  /validateEmail:
+    get:
+      tags:
+      - user
+      summary: Get user information
+      operationId: getUserByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        400:
+          description: Invalid username supplied
+        404:
+          description: User not found
   /addjoblink:
     post:
       tags:
