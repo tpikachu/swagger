@@ -94,7 +94,7 @@ paths:
         required: true
       responses:
         200:
-          description: successful operation
+          description: New user successfully created.
         default:
           description: The eamil is using by someone else or password.
       security: []
