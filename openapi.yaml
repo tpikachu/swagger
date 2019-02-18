@@ -80,13 +80,17 @@ paths:
       - user
       summary: Create user
       description: User be able to sign up with username, password, email. After sign up backend will send token to email.
-      operationId: createUser
+      operationId: signupuser
       requestBody:
         description: Created user object
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            example:
+              name: test
+              email: test@test.com
+              password: test
         required: true
       responses:
         200:
