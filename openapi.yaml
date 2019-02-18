@@ -103,7 +103,7 @@ paths:
       tags:
       - user
       summary: Login with username(email) and password
-      description: Logs user into the system and server will respond access-token, and this access-token should be stored in session. This access-token will be to use other api. Backend will identify user using access-token.
+      description: Logs user into the system and server will respond access-token, and this access-token should be stored in session. This access-token will be used to use other api. Backend will identify user using access-token.
       operationId: loginUser
       requestBody:
         description: Created user object
