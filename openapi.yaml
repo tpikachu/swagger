@@ -44,23 +44,19 @@ paths:
     put:
       tags:
       - user
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-      - name: access-token
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+      summary: Update user data
+      description: An authenticated user be able to update information
+      operationId: updateuser
       requestBody:
         description: Updated user object
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            example:
+              username: test
+              email: test@test.com
+              password: test
         required: true
       responses:
         400:
