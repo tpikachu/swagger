@@ -186,22 +186,23 @@ paths:
       tags:
       - job
       summary: Get Job lists
-      description: An authenticated user be able to retriev joblinks
-      operationId: addjoblink
+      description: An authenticated user be able to retrieve joblinks
+      operationId: getjoblinks
       parameters:
         - in: query
-          name: offset
+          name: type
           schema:
-            type: integer
-          description: The number of items to skip before starting to collect the result set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
+            type: string
+          description: if type='all' user be able to retrieve all jobads but not 'all' user will retrieve his own posted jobads
       responses:
         200:
-          description: Job link added successfully.
+          description: Job links
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
         401:
           $ref: '#/components/responses/UnauthorizedError'
 components:
