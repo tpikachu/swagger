@@ -110,7 +110,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/Loginrequest'
+            example:
+              username: test
+              password: test
         required: true
       responses:
         200:
@@ -152,7 +155,7 @@ paths:
           description: User successfully log out.
         401:
           description: Access token is missing or invalid
-  /validateEmail:
+  /validateemail:
     get:
       tags:
       - user
@@ -185,7 +188,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body_1'
+              $ref: '#/components/schemas/body'
         required: true
       responses:
         200:
@@ -245,13 +248,6 @@ components:
         password:
           type: string
     body:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-    body_1:
       type: object
       properties:
         url:
