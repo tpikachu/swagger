@@ -145,7 +145,7 @@ paths:
         400:
           description: Invalid username/password supplied
   /user/logout:
-    get:
+    post:
       tags:
       - user
       summary: Logs out current logged in user
@@ -153,7 +153,7 @@ paths:
       responses:
         200:
           description: User successfully log out.
-        401:
+        default:
           description: Access token is missing or invalid
   /validateemail:
     get:
@@ -223,8 +223,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
-                  example: '[http://example.com/job1, http://example.com/job2]'
+                  $ref: '#/components/schemas/Job'
+              example: url:"http://example/job1"
         401:
           description: Access token is missing or invalid
 components:
@@ -246,6 +246,11 @@ components:
         username:
           type: string
         password:
+          type: string
+    Job:
+      type: object
+      properties:
+        url:
           type: string
     body:
       type: object
