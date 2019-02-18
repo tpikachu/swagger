@@ -188,7 +188,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/Job'
         required: true
       responses:
         200:
@@ -254,11 +254,6 @@ components:
         password:
           type: string
     Job:
-      type: object
-      properties:
-        url:
-          type: string
-    body:
       type: object
       properties:
         url:
