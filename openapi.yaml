@@ -60,27 +60,6 @@ paths:
           description: Invalid user supplied
         404:
           description: User not found
-    post:
-      tags:
-      - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-        required: true
-      responses:
-        default:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-      security: []
     delete:
       tags:
       - user
@@ -103,6 +82,28 @@ paths:
           description: Invalid username supplied
         404:
           description: User not found
+  /user/signup:
+    post:
+      tags:
+      - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      security: []
   /user/login:
     post:
       tags:
