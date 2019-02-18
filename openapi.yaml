@@ -164,10 +164,10 @@ paths:
       tags:
       - user
       summary: Confirm user's email address
-      operationId: getUserByName
+      operationId: confirmemail
       responses:
         200:
-          description: successful operation
+          description: Email address has been confirmed.
           content:
             application/json:
               schema:
@@ -175,10 +175,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        400:
-          description: Invalid username supplied
-        404:
-          description: User not found
+        default:
+          description: Something went wrong
   /addjoblink:
     post:
       tags:
