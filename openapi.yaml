@@ -262,12 +262,3 @@ components:
           type: string
         password:
           type: string
-  securitySchemes:
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: http://example.com/oauth/token
-          scopes:
-            write: allows writing resources
-            read: allows reading resources
