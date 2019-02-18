@@ -19,7 +19,7 @@ paths:
       tags:
       - user
       summary: Get user information
-      description: An authenticated user be able to retrieve his or her information using this api.
+      description: An authenticated user be able to retrieve his or her information
       operationId: getuser
       responses:
         200:
