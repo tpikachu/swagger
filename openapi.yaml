@@ -204,6 +204,7 @@ paths:
                 type: array
                 items:
                   type: string
+                  example: '[http://example.com/job1, http://example.com/job2]'
         401:
           description: Access token is missing or invalid
 components:
