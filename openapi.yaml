@@ -165,6 +165,11 @@ paths:
       - user
       summary: Confirm user's email address
       operationId: confirmemail
+      parameters: 
+        - in: query
+        name: token
+        required: true
+        
       responses:
         200:
           description: Email address has been confirmed.
