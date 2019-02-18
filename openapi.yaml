@@ -189,6 +189,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Job'
+            example:
+              url: http://example/job1
         required: true
       responses:
         200:
