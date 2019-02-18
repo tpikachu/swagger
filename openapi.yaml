@@ -180,30 +180,26 @@ paths:
       tags:
       - job
       summary: Get Job lists
-      description: An authenticated user be able to retriev joblinks
-      operationId: addjoblink
+      description: An authenticated user be able to retrieve joblinks
+      operationId: getjoblinks
       parameters:
-      - name: offset
+      - name: type
         in: query
-        description: The number of items to skip before starting to collect the result set
+        description: if type='all' user be able to retrieve all jobads but not 'all' user will retrieve his own posted jobads
         required: false
         style: form
         explode: true
         schema:
-          type: integer
-          format: int32
-      - name: limit
-        in: query
-        description: The numbers of items to return
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
+          type: string
       responses:
         200:
-          description: Job link added successfully.
+          description: Job links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         401:
           description: Access token is missing or invalid
 components:
