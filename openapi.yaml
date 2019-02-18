@@ -159,6 +159,51 @@ paths:
           description: User successfully log out.
         401:
           $ref: '#/components/responses/UnauthorizedError'
+  /addjoblink:
+    post:
+      tags:
+        - user
+      summary: Logs user into the system and server will respond user's access-token 
+      description: ""
+      operationId: loginUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+                example: pong
+            application/json:
+              schema:
+                type: string
+                example: pong
+        400:
+          description: Invalid username/password supplied
+  
 components:
   schemas:
     User:
