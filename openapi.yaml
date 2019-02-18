@@ -224,7 +224,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Job'
-              example: url:"http://example/job1"
+              example:
+                Job1:
+                  value:
+                    url: http://example/job1
+                Job2:
+                  value:
+                    url: http://example/job2
         401:
           description: Access token is missing or invalid
 components:
