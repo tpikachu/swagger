@@ -165,21 +165,17 @@ paths:
       - user
       summary: Confirm user's email address
       operationId: confirmemail
-      parameters: 
-        - in: query
+      parameters:
+      - in: query
         name: token
+        description: this token is from backend after sign up
         required: true
-        
+        schema:
+          type: string
+        example: awevbbrntye2y53n5467xcvbn35u7mu3456
       responses:
         200:
           description: Email address has been confirmed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/User'
         default:
           description: Something went wrong
   /addjoblink:
