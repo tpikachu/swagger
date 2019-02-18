@@ -96,7 +96,7 @@ paths:
         200:
           description: New user successfully created.
         default:
-          description: The eamil is using by someone else or password.
+          description: The eamil is using by someone else.
       security: []
   /user/login:
     post:
