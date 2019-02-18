@@ -102,7 +102,8 @@ paths:
     post:
       tags:
       - user
-      summary: Logs user into the system and server will respond user's access-token
+      summary: Login with username(email) and password
+      description: Logs user into the system and server will respond user's access-token
       operationId: loginUser
       requestBody:
         description: Created user object
@@ -184,7 +185,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body_1'
+              $ref: '#/components/schemas/Loginrequest'
         required: true
       responses:
         200:
@@ -236,17 +237,19 @@ components:
           type: string
       xml:
         name: User
-    body:
+    Loginrequest:
       type: object
       properties:
         username:
           type: string
         password:
           type: string
-    body_1:
+    body:
       type: object
       properties:
-        url:
+        username:
+          type: string
+        password:
           type: string
   responses:
     UnauthorizedError:
