@@ -19,7 +19,7 @@ paths:
       tags:
       - user
       summary: Get user information
-      operationId: getUserByName
+      operationId: getuserinformation
       responses:
         200:
           description: successful operation
@@ -30,10 +30,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        400:
-          description: Invalid username supplied
-        404:
-          description: User not found
+        401:
+          description: Access token is missing or invalid
     put:
       tags:
       - user
