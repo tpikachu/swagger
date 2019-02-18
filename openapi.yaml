@@ -87,7 +87,6 @@ paths:
       tags:
       - user
       summary: Create user
-      description: This can only be done by the logged in user.
       operationId: createUser
       requestBody:
         description: Created user object
@@ -97,12 +96,14 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       responses:
-        default:
+        200:
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        default:
+          description: This eamil is using by someone else
       security: []
   /user/login:
     post:
