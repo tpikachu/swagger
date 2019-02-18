@@ -10,7 +10,9 @@ tags:
 - name: user
   description: Operations about user
 - name: job
-  description: Operations job
+  description: Operations about job
+security:
+  - bearerAuth: [] 
 paths:
   /user:
     post:
@@ -34,21 +36,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
       security: []
-  /user/{username}:
     get:
       tags:
       - user
-      summary: Get user by user name
+      summary: Get user information
       operationId: getUserByName
-      parameters:
-      - name: username
-        in: path
-        description: The name that needs to be fetched. Use user1 for testing.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         200:
           description: successful operation
@@ -70,9 +62,8 @@ paths:
       description: This can only be done by the logged in user.
       operationId: updateUser
       parameters:
-      - name: username
+      - name: access-token
         in: path
-        description: name that need to be updated
         required: true
         style: simple
         explode: false
@@ -113,25 +104,24 @@ paths:
         404:
           description: User not found
   /user/login:
-    get:
+    post:
       tags:
         - user
       summary: Logs user into the system and server will respond user's access-token 
       description: ""
       operationId: loginUser
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          schema:
-            type: string
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+        required: true
       responses:
         200:
           description: successful operation
@@ -174,14 +164,9 @@ components:
     User:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         username:
           type: string
         email:
-          type: string
-        phone:
           type: string
         password:
           type: string
@@ -190,7 +175,6 @@ components:
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
-    
   securitySchemes:
     BearerAuth:
       type: http
