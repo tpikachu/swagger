@@ -193,6 +193,8 @@ paths:
           name: type
           schema:
             type: string
+            enum: [all, mine]
+            example: all
           description: if type='all' user be able to retrieve all jobads but not 'all' user will retrieve his own posted jobads
       responses:
         200:
