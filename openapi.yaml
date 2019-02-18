@@ -160,9 +160,9 @@ paths:
     post:
       tags:
       - job
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
+      summary: Post a link
+      description: An authenticated user be able to post a link
+      operationId: addjoblink
       requestBody:
         description: Job url
         content:
@@ -172,7 +172,38 @@ paths:
         required: true
       responses:
         200:
-          description: successful operation
+          description: Job link added successfully.
+        401:
+          description: Access token is missing or invalid
+  /joblinks:
+    get:
+      tags:
+      - job
+      summary: Get Job lists
+      description: An authenticated user be able to retriev joblinks
+      operationId: addjoblink
+      parameters:
+      - name: offset
+        in: query
+        description: The number of items to skip before starting to collect the result set
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: The numbers of items to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: Job link added successfully.
         401:
           description: Access token is missing or invalid
 components:
