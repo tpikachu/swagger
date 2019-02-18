@@ -6,10 +6,6 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/SJhumili/JobArchiveAPI/1.0.0
   description: SwaggerHub API Auto Mocking
-security:
-- application:
-  - read
-  - write
 tags:
 - name: user
   description: Operations about user
@@ -120,7 +116,7 @@ paths:
     get:
       tags:
       - user
-      summary: Logs user into the system
+      summary: Logs user into the system and server will respond user's access-token
       operationId: loginUser
       parameters:
       - name: username
@@ -161,78 +157,24 @@ paths:
             application/xml:
               schema:
                 type: string
+                example: pong
             application/json:
               schema:
                 type: string
+                example: pong
         400:
           description: Invalid username/password supplied
   /user/logout:
     get:
       tags:
       - user
-      summary: Logs out current logged in user session
+      summary: Logs out current logged in user
       operationId: logoutUser
       responses:
-        default:
-          description: successful operation
-  /addlink:
-    post:
-      tags:
-      - job
-  /job:
-    get:
-      tags:
-      - job
-      summary: Get Job list
-      description: Get Job list. If username is defined in parameters, will retrieve joblist that user posted. If undefined, will retrieve all joblists.
-      operationId: getJoblist
-      parameters:
-      - name: type
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-      responses:
         200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Job'
-        400:
-          description: Invalid username supplied
-        404:
-          description: User not found
-    post:
-      tags:
-      - job
-      summary: Submit a single job advertisement.
-      description: This can only be done by the logged in user.
-      operationId: postJob
-      requestBody:
-        description: Created job object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Job'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Job'
-        required: true
-      responses:
-        default:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Job'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Job'
+          description: User successfully log out.
+        401:
+          description: Access token is missing or invalid
 components:
   schemas:
     User:
@@ -251,27 +193,11 @@ components:
           type: string
       xml:
         name: User
-    Job:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        jobposted:
-          type: string
-          format: date
-        email:
-          type: string
-        phone:
-          type: string
-        password:
-          type: string
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
   securitySchemes:
-    application:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: http://example.com/oauth/token
-          scopes:
-            write: allows writing resources
-            read: allows reading resources
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
