@@ -19,7 +19,8 @@ paths:
       tags:
       - user
       summary: Get user information
-      operationId: getuserinformation
+      description: An authenticated user be able to retrieve his or her information using this api.
+      operationId: getuser
       responses:
         200:
           description: successful operation
@@ -27,9 +28,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+              example:
+                username: test
+                email: test@test.com
+                password: test
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
+              example:
+                username: test
+                email: test@test.com
+                password: test
         401:
           description: Access token is missing or invalid
     put:
