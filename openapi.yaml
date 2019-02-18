@@ -205,8 +205,6 @@ paths:
                 type: array
                 items: 
                   type: string
-                  example: [https://www.glassdoor.com/Salaries/tampa-pharmaceutical-sales-representative-salary-SRCH_IL.0,5_IM850_KO6,41.htm?utm_source=google_jobs_salary&utm_medium=organic&utm_campaign=google_jobs_salary,
-                  https://www.glassdoor.com/Salaries/tampa-pharmaceutical-sales-representative-salary-SRCH_IL.0,5_IM850_KO6,41.htm?utm_source=google_jobs_salary&utm_medium=organic&utm_campaign=google_jobs_salary]
         401:
           $ref: '#/components/responses/UnauthorizedError'
 components:
