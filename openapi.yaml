@@ -72,10 +72,8 @@ paths:
       responses:
         200:
           description: Your profile deleted successfully.
-        400:
-          description: Invalid username supplied
-        404:
-          description: User not found
+        401:
+          description: Access token is missing or invalid
   /user/signup:
     post:
       tags:
