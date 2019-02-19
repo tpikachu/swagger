@@ -197,7 +197,7 @@ paths:
           description: Job link added successfully.
         401:
           description: Access token is missing or invalid
-  /joblinks:
+  /listlinks:
     get:
       tags:
       - job
@@ -227,10 +227,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Job'
               example:
-                Job1:
+                -Job1:
                   value:
                     url: http://example/job1
-                Job2:
+                -Job2:
                   value:
                     url: http://example/job2
         401:
