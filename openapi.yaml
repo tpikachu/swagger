@@ -6,6 +6,8 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/SJhumili/JobArchiveAPI/1.0.0
   description: SwaggerHub API Auto Mocking
+- url: http://localhost:8000
+  description: Test in localserver
 security:
 - bearerAuth: []
 tags:
