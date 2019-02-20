@@ -11,12 +11,117 @@ servers:
 security:
 - bearerAuth: []
 tags:
+- name: auth
+  description: Operations about auth
 - name: user
   description: Operations about user
 - name: job
   description: Operations about job
 paths:
-  /user:
+  /signup:
+    post:
+      tags:
+      - auth
+      summary: Create user
+      description: User be able to sign up with username, password, email. After sign up backend will send token to email.
+      operationId: signupuser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              username: test
+              email: test@test.com
+              password: test
+        required: true
+      responses:
+        200:
+          description: New user successfully created.
+        default:
+          description: The eamil is using by someone else.
+      security: []
+  /signin:
+    post:
+      tags:
+      - auth
+      summary: Sign in with username(email) and password
+      description: User be able to sign into the system and server will respond access-token, and this access-token should be stored in session. This access-token will be used to use other api. Backend will identify user using access-token.
+      operationId: signin
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loginrequest'
+            example:
+              username: test
+              password: test
+        required: true
+      responses:
+        200:
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              style: simple
+              explode: false
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+                example: pong
+            application/json:
+              schema:
+                type: string
+                example: pong
+        400:
+          description: Invalid username/password supplied
+  /logout:
+    post:
+      tags:
+      - auth
+      summary: Logs out current logged in user
+      operationId: logoutUser
+      responses:
+        200:
+          description: User successfully log out.
+        default:
+          description: Access token is missing or invalid
+  /validateemail:
+    get:
+      tags:
+      - auth
+      summary: Confirm user's email address
+      operationId: confirmemail
+      parameters:
+      - name: token
+        in: query
+        description: this token is from backend after sign up
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: awevbbrntye2y53n5467xcvbn35u7mu3456
+      responses:
+        200:
+          description: Email address has been confirmed.
+        default:
+          description: Something went wrong
+      security: []
+  /api/user:
     get:
       tags:
       - user
@@ -76,109 +181,7 @@ paths:
           description: Your profile deleted successfully.
         401:
           description: Access token is missing or invalid
-  /user/signup:
-    post:
-      tags:
-      - user
-      summary: Create user
-      description: User be able to sign up with username, password, email. After sign up backend will send token to email.
-      operationId: signupuser
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-            example:
-              name: test
-              email: test@test.com
-              password: test
-        required: true
-      responses:
-        200:
-          description: New user successfully created.
-        default:
-          description: The eamil is using by someone else.
-      security: []
-  /user/login:
-    post:
-      tags:
-      - user
-      summary: Login with username(email) and password
-      description: Logs user into the system and server will respond access-token, and this access-token should be stored in session. This access-token will be used to use other api. Backend will identify user using access-token.
-      operationId: loginUser
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Loginrequest'
-            example:
-              username: test
-              password: test
-        required: true
-      responses:
-        200:
-          description: successful operation
-          headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              style: simple
-              explode: false
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
-              style: simple
-              explode: false
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/xml:
-              schema:
-                type: string
-                example: pong
-            application/json:
-              schema:
-                type: string
-                example: pong
-        400:
-          description: Invalid username/password supplied
-  /user/logout:
-    post:
-      tags:
-      - user
-      summary: Logs out current logged in user
-      operationId: logoutUser
-      responses:
-        200:
-          description: User successfully log out.
-        default:
-          description: Access token is missing or invalid
-  /validateemail:
-    get:
-      tags:
-      - user
-      summary: Confirm user's email address
-      operationId: confirmemail
-      parameters:
-      - name: token
-        in: query
-        description: this token is from backend after sign up
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
-        example: awevbbrntye2y53n5467xcvbn35u7mu3456
-      responses:
-        200:
-          description: Email address has been confirmed.
-        default:
-          description: Something went wrong
-  /addjoblink:
+  /api/addjoblink:
     post:
       tags:
       - job
@@ -199,7 +202,7 @@ paths:
           description: Job link added successfully.
         401:
           description: Access token is missing or invalid
-  /listlinks:
+  /api/listlinks:
     get:
       tags:
       - job
